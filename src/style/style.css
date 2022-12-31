@@ -1,0 +1,54 @@
+body {
+  background: red;
+  text-align: center;
+}
+body .Home img {
+  width: 300px;
+}
+body .About {
+  height: 100vh;
+}
+body .About .keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  justify-content: center;
+}
+body .About .keyboard .letter {
+  background: black;
+  color: wheat;
+  cursor: pointer;
+  border: 2px solid wheat;
+  justify-content: center;
+  font-weight: bold;
+  line-height: 45px;
+}
+body .About .keyboard .uppercase {
+  grid-row: 1/6;
+  -ms-writing-mode: tb-lr;
+      writing-mode: vertical-lr;
+  transform: scale(-1, -1);
+}
+body .About .keyboard .space {
+  grid-column: 2/9;
+  width: auto;
+}
+body .About .keyboard .enter {
+  grid-column: 9/11;
+}
+body .About .keyboard:has(.letter:hover) .letter:not(:hover) {
+  opacity: 0.8;
+}
+body .About .done {
+  display: none;
+}
+body .About h1 {
+  background: wheat;
+  color: black;
+  height: 40px;
+  max-width: 500px;
+  overflow: auto;
+}
+body .About .result {
+  background: none;
+  translate: 0 200px;
+}

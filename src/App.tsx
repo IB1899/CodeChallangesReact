@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from "./pages/Home";
+import About from "./pages/About";
+
+let App = () => {
+
+
+    return (
+        <Router>
+            <>
+
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+
+                    <Route path="*" element={<About />} />
+                </Routes>
+            </>
+        </Router>
+    )
 }
 
 export default App;
+
+// visit this to understand how to use router with webpack
+//  https://dev.to/jordan_smith/how-to-build-a-react-app-using-react-router-v6-without-create-react-app-4fe3
