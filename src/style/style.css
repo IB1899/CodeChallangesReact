@@ -1,3 +1,13 @@
+*::-moz-selection {
+  background: none;
+  pointer-events: none;
+}
+
+*::selection {
+  background: none;
+  pointer-events: none;
+}
+
 body {
   background: red;
   text-align: center;
@@ -6,7 +16,8 @@ body .Home img {
   width: 300px;
 }
 body .About {
-  height: 100vh;
+  display: grid;
+  justify-content: center;
 }
 body .About .keyboard {
   display: grid;
@@ -41,12 +52,20 @@ body .About .keyboard:has(.letter:hover) .letter:not(:hover) {
 body .About .done {
   display: none;
 }
-body .About h1 {
+body .About input {
   background: wheat;
   color: black;
   height: 40px;
   max-width: 500px;
   overflow: auto;
+  border: none;
+  margin: 20px 0;
+}
+body .About input::-moz-selection {
+  background: blue;
+}
+body .About input::selection {
+  background: blue;
 }
 body .About .result {
   background: none;

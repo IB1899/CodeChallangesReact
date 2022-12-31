@@ -1,10 +1,12 @@
+*::selection{ background:none; pointer-events:none; }
+
 body{
     background:red; text-align:center;
 
     .Home{ img{ width:300px; }
     }
 
-    .About{ height:100vh;
+    .About{  display:grid; justify-content:center;
 
         .keyboard { display: grid; grid-template-columns: repeat(10, 50px); justify-content: center;
 
@@ -29,7 +31,10 @@ body{
         .done { display: none; }
     
         //* The keyboard displaying
-        h1 { background: wheat;  color: black; height: 40px;  max-width: 500px; overflow: auto; }
+        input{ background: wheat;  color: black; height: 40px;  max-width: 500px; overflow: auto; border:none;
+            margin:20px 0; 
+        }
+        input::selection{ background:blue; }
     
         //* The result shows after clicking the enter button
         .result {  background: none; translate: 0 200px; }
