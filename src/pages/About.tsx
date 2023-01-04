@@ -1,83 +1,99 @@
-import { ChangeEvent, useState } from "react";
+import { useRef, useState } from "react";
 
 let About = () => {
 
-    //* The keyboard letters inside an array
-    //* So I display them in the jsx by looping through them
-    let [letters, setLetters] = useState<string[]>([
-        "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s",
-        "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"
-    ])
+    //! The displayed piano keys
+    let [keys] = useState([
+        <span className="white">a</span>,
+        <span className="black">w</span>,
+        <span className="white">s</span>,
+        <span className="black">e</span>,
+        <span className="white">d</span>,
+        <span className="white">f</span>,
+        <span className="black">t</span>,
+        <span className="white">g</span>,
+        <span className="black">y</span>,
+        <span className="white">h</span>,
+        <span className="black">u</span>,
+        <span className="white">j</span>,
+        <span className="white">k</span>,
+        <span className="black">o</span>,
+        <span className="white">l</span>,
+        <span className="black">p</span>,
+        <span className="white">;</span>,
+    ]);
+
+    //! State for showing & hiding the pianoKeys letters.
+    let [isLettersShown, setIsLettersShown] = useState<boolean>(true);
+
+    //! State to add class to the key when clicking the keyboard that has tune that matches it.
+    // let [isActive, setIsActive] = useState<boolean>(false); Didn't work
 
 
-    //* State for holding the displayed letters
-    let [element, setElement] = useState<string>("");
+    let audio = new Audio("");
 
-    //* Condition for showing or covering the keyboard
-    //* It triggers after a user clicks on the enter button
-    let [isTrue, setIsTrue] = useState<boolean>(false);
+    //* play each key's tune when clicking on the key
+    let playTune = (key: JSX.Element) => {
+        audio.src = `audios/${key.props.children}.wav`;
+        audio.play();
+    }
 
-    //? Check if the letters are already uppercase then turn them to lowercase , and reverse
-    function isUpperCase(str: string) {
+    //! The range input
+    let volumeSlider = useRef<HTMLInputElement>(null);
 
-        //* Returns true if the parameter is uppercase  , and false if it's lowercase
-        return str === str.toUpperCase();
+    //* Controlling the volume of the tunes
+    let volumeControl = () => {
+        audio.volume = volumeSlider.current?.valueAsNumber!;
+    }
+
+    //* When clicking the keyboard button play tune
+    document.onkeydown = (e: KeyboardEvent) => {
+
+        keys.forEach(key => {
+
+            //* Only run when the clicked keyboardKey is one of the tunes
+            if (e.key === key.props.children) {
+                audio.src = `audios/${e.key}.wav`;
+                audio.play();
+            }
+        })
     }
 
     return (
         <div className="About">
 
-            <input type="text" value={element} onChange={(e: ChangeEvent<HTMLInputElement>) => setElement(e.target.value)} />
+            <div className="piano">
 
+                <header>
 
-            {/* ----------------------keyboard--------------------------- */}
-            <div className={isTrue ? "done" : "keyboard"}>
+                    <h2>React Piano</h2>
 
-                {/* //* Turn letters to uppercase and reverse button */}
-                <div className="letter uppercase" onClick={() => {
-                    setLetters(
-                        letters.map((letter) => {
+                    <div className="volume">
+                        <label htmlFor="volumeSlider">Volume</label>
+                        <input type="range" id="volumeSlider" ref={volumeSlider} onInput={() => { volumeControl() }}
+                            min="0" max="1" step="any" defaultValue="0.5"
+                        />
+                    </div>
 
-                            //? Check if the letters are already uppercase turn them to lowercase , and reverse
-                            if (isUpperCase(letter)) {
-                                return letter = letter.toLocaleLowerCase()!;
-                            }
-                            else {
-                                return letter = letter.toUpperCase()!;
-                            }
-                        })
-                    )
-                }}>
-                    uppercase
+                    <div className="checking">
+                        <label htmlFor="checkbox">Show keys</label>
+                        <input type="checkbox" defaultChecked onClick={() => setIsLettersShown(!isLettersShown)} />
+                    </div>
+
+                </header>
+
+                {/* //* show & hide the keyboard letters  */}
+                <div className={isLettersShown ? "bottom" : "bottom hide"}>
+                    {
+                        keys.map(key => (
+                            <div className="key" key={key.props.children} onClick={() => playTune(key)} >
+                                {key}
+                            </div>
+                        ))
+                    }
                 </div>
-
-                {/* //* Displaying the letters */}
-                {
-                    letters.map(one => (
-                        <div className="letter" key={one} onClick={() => { setElement(element + one); }}>
-                            {one}
-                        </div>
-                    ))
-                }
-
-                {/* //* delete a letter */}
-                <div className="letter delete" onClick={() => setElement(element.toString().slice(0, -1))}>
-                    delete
-                </div>
-
-                {/* //* Adding space */}
-                <div className="letter space" onClick={() => setElement(element + " ")}>
-                </div>
-
-                {/* // enter button */}
-                <div className="letter enter" onClick={() => { setIsTrue(true) }}>
-                    enter
-                </div>
-
 
             </div>
-            {/* ----------------------keyboard--------------------------- */}
-
 
         </div>
     );

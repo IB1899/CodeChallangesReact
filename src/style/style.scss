@@ -1,43 +1,61 @@
-*::selection{ background:none; pointer-events:none; }
+*{margin:0; padding:0;}
 
-body{
-    background:red; text-align:center;
+body{  text-align:center;
 
     .Home{ img{ width:300px; }
     }
 
-    .About{  display:grid; justify-content:center;
+    .About{  display:grid; justify-content:center; height:100vh; align-items:center; background:red;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-        .keyboard { display: grid; grid-template-columns: repeat(10, 50px); justify-content: center;
+        .piano{ width:700px;  background:black; padding:30px; border-radius:10px; color:white;
 
-            //* Each letter
-            .letter { background: black; color: wheat; cursor: pointer; border: 2px solid wheat;
-                justify-content: center; font-weight: bold; line-height: 45px;
+            header{
+                display:flex; justify-content:space-between; align-items:center;
+
+                h2{margin-left:20px;}
+
+                .volume{ translate:0 2px;
+                    label{ margin:0 10px; position:relative; top:-3px; }
+                    input{ accent-color:red; cursor:pointer;  outline:none;}
+                }
+
+                .checking{ margin-right:20px; 
+                    label{ margin:0 10px; position:relative; top:-10px; }
+
+                    input{ appearance:none; width:60px; height:30px; background:red; border-radius:15px; position:relative; outline:none;
+                        
+                        &::before{ content:"Off"; position:absolute; left:3px; width:28px; height:28px; background:lightgray;
+                            top:50%; translate:0 -50%; border-radius:20px; cursor:pointer; transition:.3s; text-align:center;
+                            line-height:30px; font-weight:bold; color:black;
+                        }
+                        &:checked::before{ content:"On"; transition:.3s; left:30px; background:black; color:white; }
+                    }
+                }
             }
-    
-            //* The uppercase button
-            .uppercase {    grid-row: 1/6; writing-mode: vertical-lr; transform: scale(-1, -1); }
-    
-            //* The space button
-            .space { grid-column: 2/9; width: auto }
-    
-            //* The enter button
-            .enter {    grid-column: 9/11; }
-    
-            &:has(.letter:hover) .letter:not(:hover) { opacity: .8;}
+
+            .bottom{ display:flex;  margin:0 10px; margin-top:40px;
+                
+                .key:has(.white){ background:linear-gradient(white 96%, red 4% ); color:rgb(172, 172, 172);
+                    height:240px; width:200px; border-radius:5px; cursor:pointer; user-select:none; position:relative;
+                    border:2px solid black;
+                    span{position:absolute; bottom:10px; text-transform:uppercase; left:50%; translate:-50%;}
+
+                    &:active{ background:rgb(216, 216, 216) }
+                }
+                .key:has(.black){ background:linear-gradient(black 96% , red 4%); color:rgb(172, 172, 172);
+                    height:130px; width:120px; border-radius:5px; cursor:pointer; user-select:none; position:relative;
+                    margin:0 -20px 0 -20px; z-index:1;
+                    
+                    span{position:absolute; bottom:10px; text-transform:uppercase; left:50%; translate:-50%;}
+
+                    &:active{ background:rgb(41, 41, 41) }
+                }
+            }
+            .bottom.hide{
+                .key{ font-size:0; }
+            }
         }
-    
-        //* When clicking the enter button make the keyboard disappear
-        .done { display: none; }
-    
-        //* The keyboard displaying
-        input{ background: wheat;  color: black; height: 40px;  max-width: 500px; overflow: auto; border:none;
-            margin:20px 0; 
-        }
-        input::selection{ background:blue; }
-    
-        //* The result shows after clicking the enter button
-        .result {  background: none; translate: 0 200px; }
     
     }
 }

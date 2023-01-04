@@ -1,15 +1,9 @@
-*::-moz-selection {
-  background: none;
-  pointer-events: none;
-}
-
-*::selection {
-  background: none;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: red;
   text-align: center;
 }
 body .Home img {
@@ -18,56 +12,136 @@ body .Home img {
 body .About {
   display: grid;
   justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background: red;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-body .About .keyboard {
-  display: grid;
-  grid-template-columns: repeat(10, 50px);
-  justify-content: center;
-}
-body .About .keyboard .letter {
+body .About .piano {
+  width: 700px;
   background: black;
-  color: wheat;
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+}
+body .About .piano header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .About .piano header h2 {
+  margin-left: 20px;
+}
+body .About .piano header .volume {
+  translate: 0 2px;
+}
+body .About .piano header .volume label {
+  margin: 0 10px;
+  position: relative;
+  top: -3px;
+}
+body .About .piano header .volume input {
+  accent-color: red;
   cursor: pointer;
-  border: 2px solid wheat;
-  justify-content: center;
+  outline: none;
+}
+body .About .piano header .checking {
+  margin-right: 20px;
+}
+body .About .piano header .checking label {
+  margin: 0 10px;
+  position: relative;
+  top: -10px;
+}
+body .About .piano header .checking input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 60px;
+  height: 30px;
+  background: red;
+  border-radius: 15px;
+  position: relative;
+  outline: none;
+}
+body .About .piano header .checking input::before {
+  content: "Off";
+  position: absolute;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  background: lightgray;
+  top: 50%;
+  translate: 0 -50%;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+  line-height: 30px;
   font-weight: bold;
-  line-height: 45px;
-}
-body .About .keyboard .uppercase {
-  grid-row: 1/6;
-  -ms-writing-mode: tb-lr;
-      writing-mode: vertical-lr;
-  transform: scale(-1, -1);
-}
-body .About .keyboard .space {
-  grid-column: 2/9;
-  width: auto;
-}
-body .About .keyboard .enter {
-  grid-column: 9/11;
-}
-body .About .keyboard:has(.letter:hover) .letter:not(:hover) {
-  opacity: 0.8;
-}
-body .About .done {
-  display: none;
-}
-body .About input {
-  background: wheat;
   color: black;
-  height: 40px;
-  max-width: 500px;
-  overflow: auto;
-  border: none;
-  margin: 20px 0;
 }
-body .About input::-moz-selection {
-  background: blue;
+body .About .piano header .checking input:checked::before {
+  content: "On";
+  transition: 0.3s;
+  left: 30px;
+  background: black;
+  color: white;
 }
-body .About input::selection {
-  background: blue;
+body .About .piano .bottom {
+  display: flex;
+  margin: 0 10px;
+  margin-top: 40px;
 }
-body .About .result {
-  background: none;
-  translate: 0 200px;
+body .About .piano .bottom .key:has(.white) {
+  background: linear-gradient(white 96%, red 4%);
+  color: rgb(172, 172, 172);
+  height: 240px;
+  width: 200px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  border: 2px solid black;
+}
+body .About .piano .bottom .key:has(.white) span {
+  position: absolute;
+  bottom: 10px;
+  text-transform: uppercase;
+  left: 50%;
+  translate: -50%;
+}
+body .About .piano .bottom .key:has(.white):active {
+  background: rgb(216, 216, 216);
+}
+body .About .piano .bottom .key:has(.black) {
+  background: linear-gradient(black 96%, red 4%);
+  color: rgb(172, 172, 172);
+  height: 130px;
+  width: 120px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  margin: 0 -20px 0 -20px;
+  z-index: 1;
+}
+body .About .piano .bottom .key:has(.black) span {
+  position: absolute;
+  bottom: 10px;
+  text-transform: uppercase;
+  left: 50%;
+  translate: -50%;
+}
+body .About .piano .bottom .key:has(.black):active {
+  background: rgb(41, 41, 41);
+}
+body .About .piano .bottom.hide .key {
+  font-size: 0;
 }
