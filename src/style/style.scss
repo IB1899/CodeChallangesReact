@@ -6,38 +6,6 @@ body{
     .Home{ img{ width:300px; }
     }
 
-    .About{  display:grid; justify-content:center;
+    .About{  display:grid; justify-content:center;}
 
-        .keyboard { display: grid; grid-template-columns: repeat(10, 50px); justify-content: center;
-
-            //* Each letter
-            .letter { background: black; color: wheat; cursor: pointer; border: 2px solid wheat;
-                justify-content: center; font-weight: bold; line-height: 45px;
-            }
-    
-            //* The uppercase button
-            .uppercase {    grid-row: 1/6; writing-mode: vertical-lr; transform: scale(-1, -1); }
-    
-            //* The space button
-            .space { grid-column: 2/9; width: auto }
-    
-            //* The enter button
-            .enter {    grid-column: 9/11; }
-    
-            &:has(.letter:hover) .letter:not(:hover) { opacity: .8;}
-        }
-    
-        //* When clicking the enter button make the keyboard disappear
-        .done { display: none; }
-    
-        //* The keyboard displaying
-        input{ background: wheat;  color: black; height: 40px;  max-width: 500px; overflow: auto; border:none;
-            margin:20px 0; 
-        }
-        input::selection{ background:blue; }
-    
-        //* The result shows after clicking the enter button
-        .result {  background: none; translate: 0 200px; }
-    
-    }
 }
