@@ -1,27 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
+
+//! Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Header from "./pages/Header";
 
-let App = () => {
+function App() {
 
 
     return (
         <Router>
-            <>
+            <div className="App">
+
+               <Header />
 
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
 
-                    <Route path="*" element={<About />} />
+                    <Route path="/" element={ <Home /> } />
+                    <Route path="/about" element={ <About /> } />
                 </Routes>
-            </>
+
+            </div>
         </Router>
     )
 }
 
-export default App;
-
-// visit this to understand how to use router with webpack
-//  https://dev.to/jordan_smith/how-to-build-a-react-app-using-react-router-v6-without-create-react-app-4fe3
+export default App

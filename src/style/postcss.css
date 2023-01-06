@@ -1,0 +1,24 @@
+*{padding:0;  margin:0;}
+
+
+body{ text-align:center; background:red;
+    
+    header{
+        display:flex; justify-content:space-between; background:black;
+        
+        h2{color:red; margin:10px;}
+
+        ul{list-style:none; display:flex; 
+            li{color:white; cursor:pointer; font-weight:700; margin:10px;
+                font-size:20px;
+            }
+        }
+    }
+
+    h1{ color:white; }
+
+    .Home{
+
+        img{width:500px; object-fit:cover;}
+    }
+}
