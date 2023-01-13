@@ -8,17 +8,17 @@ import Header from "./pages/Header";
 
 function App() {
 
-
+    
     return (
         <Router>
             <div className="App">
 
-               <Header />
+                <Header />
 
                 <Routes>
 
-                    <Route path="/" element={ <Home /> } />
-                    <Route path="/about" element={ <About /> } />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
                 </Routes>
 
             </div>

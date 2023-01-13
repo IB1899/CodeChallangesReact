@@ -1,7 +1,7 @@
 *{padding:0;  margin:0;}
 
 
-body{ text-align:center; background:red;
+body{ text-align:center; background:red; font-family: Arial, Helvetica, sans-serif;
     
     header{
         display:flex; justify-content:space-between; background:black;
@@ -14,11 +14,82 @@ body{ text-align:center; background:red;
             }
         }
     }
-
     h1{ color:white; }
-
     .Home{
-
         img{width:500px; object-fit:cover;}
+    }
+
+
+    /*//! About Page */
+    .About{ color:white; height:92vh; display:grid; justify-content:center;
+
+        .container{ margin-top:20px; background:white; border-radius:10px; padding:20px 0; height:fit-content; color:red; width:380px;
+            position: relative; box-shadow:3px -3px 15px rgb(102, 0, 0);
+
+            .top{ display:flex; justify-content:space-between; margin:0; border-bottom:1.5px solid red; width:100%;
+                #icon{ cursor:pointer; font-size:28px; font-weight:bold; translate:0 -5px; margin:0 10px;}
+    
+                h3{font-weight:700; pointer-events:none;}
+            }
+
+            .middle{ display:flex; flex-direction:column; align-items:center;
+                img{width:330px; height:230px; object-fit:cover; border-radius:10px; margin:15px; box-shadow:2px 2px 2px red}
+
+                h3{font-size:22px; font-weight:500; margin:5px; color:black; pointer-events:none; &::first-letter{color:red;}}
+                h4{font-size:17px; font-weight:100; letter-spacing:-.4px; opacity:.9;pointer-events:none; color:black;}
+
+                input{width:80%;  margin:20px 0; cursor:pointer;  -webkit-appearance:none;
+
+                    &::-webkit-slider-runnable-track {
+                        width: 100%; height: 12px; cursor: pointer; box-shadow: 1px 1px 1px gray; background: red;
+                        border-radius: 15px; border: 1px solid white;
+                    }
+                    &::-webkit-slider-thumb{  border: 2px solid black; height:20px;
+                        width:20px; border-radius:50%; background: red; cursor: pointer; -webkit-appearance: none; margin-top:-5px;
+                    }
+                    &:focus{outline:none;}
+                }
+
+                .first{position:relative; top:-8px; left:-135px; font-weight:bold;}
+                .second{position:relative; top:-8px; right:-135px; font-weight:bold;}
+            }
+
+            .down{  display:flex; justify-content:center; margin-top:10px; 
+                
+                span{font-weight:bold; font-size:24px;  cursor:pointer; user-select:none;transition:.3s;
+                    &:hover{color:black; transition:.3s;}
+                }
+    
+                #play{margin:0 7px;}
+                #playlist,#loop{ margin:0 70px; }
+            }
+
+            .musicList{ background:white; position:absolute; width:380px; bottom:0px; border-radius:10px;
+                opacity:1; transition:1s; height:350px;
+
+                
+                .header{ display:flex; border-bottom:1.5px solid red; margin:5px;
+                    #icon{margin:5px; font-weight:bold; pointer-events:none;}
+                    h3{translate:0 7px; pointer-events:none;}
+                    
+                    #close{ position:absolute; right:3px; top:10px; font-weight:bold; cursor: pointer; transition:.3s;
+                        &:hover{color:black; transition:.3s;}
+                    }
+                }
+                
+                .musics{ display:flex; flex-direction:column; align-items:flex-start; text-align:left; width:100%; 
+                    height:300px; overflow:auto;
+                    &::-webkit-scrollbar{display:none;}
+
+                    .music{ margin:15px; cursor:pointer; transition:.3s; position:relative; width:200px;
+                        &:hover{transition:.3s; color:black;}
+
+                        span{position:absolute; right:-140px; top:12px; font-weight:bold; }
+                    }
+                }
+            }
+            .musicList.hide{opacity:0; width:5px; }
+
+        }
     }
 }
